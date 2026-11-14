@@ -23,7 +23,7 @@ add_library(Renderer::vulkan ALIAS renderer_vulkan)
 target_link_libraries(renderer_vulkan
         PUBLIC
         Renderer::common
-        Vulkan::Vulkan
+        Vulkan::Settings
         glfw
         PRIVATE
         glm::glm

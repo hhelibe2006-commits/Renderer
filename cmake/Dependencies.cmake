@@ -41,10 +41,3 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(glm glfw VulkanMemoryAllocator imgui tinygltf ktx)
 
 add_library(renderer_vma INTERFACE)
-
-target_include_directories(renderer_vma SYSTEM INTERFACE
-        ${VulkanMemoryAllocator_SOURCE_DIR}/include
-)
-target_link_libraries(renderer_vma INTERFACE Vulkan::Vulkan)
-
-add_library(Renderer::vma ALIAS renderer_vma)
