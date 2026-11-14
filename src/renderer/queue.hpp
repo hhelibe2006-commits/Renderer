@@ -7,11 +7,9 @@ namespace renderer {
     class Queue {
     public:
         Queue(const LogicalDevice& logicalDevice, uint32_t queueIndex);
-        ~Queue() = default;
+        ~Queue();
 
-        [[nodiscard]] const vk::raii::Queue& get() const {
-            return *m_queue;
-        }
+        [[nodiscard]] const vk::raii::Queue& get() const;
     private:
         std::unique_ptr<vk::raii::Queue> m_queue;
     };

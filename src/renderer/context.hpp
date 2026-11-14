@@ -5,11 +5,9 @@ namespace renderer {
     class Context {
     public:
         Context();
-        ~Context() = default;
+        ~Context();
 
-        [[nodiscard]] const vk::raii::Context& get() const{
-            return *m_context;
-        }
+        [[nodiscard]] const vk::raii::Context& get() const;
     private:
         std::unique_ptr<vk::raii::Context> m_context;
     };

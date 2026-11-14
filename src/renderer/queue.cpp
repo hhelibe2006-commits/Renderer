@@ -6,4 +6,10 @@ namespace renderer {
     Queue::Queue(const LogicalDevice &logicalDevice, uint32_t queueIndex) {
         m_queue = std::make_unique<vk::raii::Queue>(logicalDevice.get(), queueIndex, 0);
     }
+
+    Queue::~Queue() = default;
+
+    const vk::raii::Queue &Queue::get() const {
+        return *m_queue;
+    }
 }

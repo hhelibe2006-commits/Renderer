@@ -1,13 +1,13 @@
 #include "Renderer.hpp"
 
+#include "context.hpp"
+#include "queue.hpp"
 #include "physical_device.hpp"
 #include "allocator.hpp"
 #include "debugMessage.hpp"
 #include "instance.hpp"
 #include "logic_device.hpp"
 #include "image_view.hpp"
-#include "queue.hpp"
-#include "context.hpp"
 
 namespace renderer {
     Renderer::Renderer(std::vector<const char*>& required_extensions) {
@@ -18,6 +18,8 @@ namespace renderer {
         m_device = std::make_unique<LogicalDevice>(*m_physical_device);
         m_allocator = std::make_unique<Allocator>(*m_instance, *m_physical_device, *m_device);
     }
+
+    Renderer::~Renderer() = default;
 
     void Renderer::setSwapChain(VkSurfaceKHR &&surface, GLFWwindow* window) {
         m_surface = std::make_unique<vk::raii::SurfaceKHR>(m_instance -> get(), surface);

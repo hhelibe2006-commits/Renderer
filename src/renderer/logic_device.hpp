@@ -1,5 +1,5 @@
 #pragma once
-#include <vulkan/vulkan.hpp>
+#include <vulkan/vulkan_raii.hpp>
 
 namespace renderer {
     class PhysicalDevice;
@@ -10,9 +10,7 @@ namespace renderer {
         explicit LogicalDevice(const PhysicalDevice& physical_device);
         ~LogicalDevice() = default;
 
-        [[nodiscard]] const vk::raii::Queue& getQueue() const {
-            return m_queue -> get();
-        };
+        [[nodiscard]] const vk::raii::Queue& getQueue() const;
 
         [[nodiscard]] const vk::raii::Device& get() const {
             return *m_device;

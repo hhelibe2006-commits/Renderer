@@ -41,4 +41,8 @@ namespace renderer {
 
         m_queue = std::make_unique<Queue>(*this, physical_device.getQueueIndex());
     }
+
+    const vk::raii::Queue& LogicalDevice::getQueue() const {
+        return m_queue -> get();
+    }
 }
