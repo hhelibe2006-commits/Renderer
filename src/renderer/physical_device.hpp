@@ -1,13 +1,11 @@
 #pragma once
-#include <utility>
-#define VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 #include <vulkan/vulkan_raii.hpp>
-#undef VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 
-#include "logic_device.hpp"
 #include "GLFW/glfw3.h"
 
 namespace renderer {
+    class LogicalDevice;
+
     class PhysicalDevice {
     public:
         explicit PhysicalDevice(const vk::raii::PhysicalDevice& device);

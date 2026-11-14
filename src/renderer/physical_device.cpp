@@ -3,6 +3,7 @@
 #include <map>
 
 #include "GLFW/glfw3.h"
+#include "logic_device.hpp"
 
 namespace {
     std::vector<const char*> required_extensions{

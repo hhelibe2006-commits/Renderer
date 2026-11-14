@@ -1,6 +1,7 @@
 #include "logic_device.hpp"
 
 #include "physical_device.hpp"
+#include "queue.hpp"
 
 namespace {
     std::vector<const char*> required_extensions = {

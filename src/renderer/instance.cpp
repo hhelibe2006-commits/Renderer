@@ -1,4 +1,6 @@
 #include "instance.hpp"
+#include "context.hpp"
+#include "debugMessage.hpp"
 
 namespace {
 #if NDEBUG

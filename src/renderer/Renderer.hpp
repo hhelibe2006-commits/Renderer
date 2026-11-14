@@ -1,12 +1,16 @@
 #pragma once
-#include "allocator.hpp"
-#include "debugMessage.hpp"
-#include "instance.hpp"
-#include "physical_device.hpp"
-#include "logic_device.hpp"
-#include "image_view.hpp"
+#include <vector>
+
+#include <vulkan/vulkan_raii.hpp>
+#include "GLFW/glfw3.h"
 
 namespace renderer {
+    class Instance;
+    class PhysicalDevice;
+    class LogicalDevice;
+    class Allocator;
+    class ImageViews;
+
     class Renderer {
     public:
         explicit Renderer(std::vector<const char*>& required_extensions);
@@ -15,9 +19,7 @@ namespace renderer {
 
         void setSwapChain(VkSurfaceKHR &&surface, GLFWwindow* window);
 
-        [[nodiscard]] const vk::raii::Instance& getInstance() const {
-            return m_instance -> get();
-        }
+        [[nodiscard]] const vk::raii::Instance& getInstance() const;
     private:
         std::unique_ptr<Instance> m_instance = nullptr;
         std::unique_ptr<PhysicalDevice> m_physical_device = nullptr;

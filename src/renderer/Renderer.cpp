@@ -1,5 +1,13 @@
 #include "Renderer.hpp"
+
 #include "physical_device.hpp"
+#include "allocator.hpp"
+#include "debugMessage.hpp"
+#include "instance.hpp"
+#include "logic_device.hpp"
+#include "image_view.hpp"
+#include "queue.hpp"
+#include "context.hpp"
 
 namespace renderer {
     Renderer::Renderer(std::vector<const char*>& required_extensions) {
@@ -15,6 +23,10 @@ namespace renderer {
         m_surface = std::make_unique<vk::raii::SurfaceKHR>(m_instance -> get(), surface);
 
         createSwapchain(window);
+    }
+
+    const vk::raii::Instance& Renderer::getInstance() const {
+        return m_instance -> get();
     }
 
     void Renderer::createSwapchain(GLFWwindow* window) {
