@@ -1,15 +1,12 @@
-#define VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 #include <vulkan/vulkan.hpp>
-#undef VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 
-#define VMA_IMPLEMENTATION
 #include <vma/vk_mem_alloc.h>
-#undef VMA_IMPLEMENTATION
 
 #include "allocator.hpp"
 
 #include "instance.hpp"
 #include "physical_device.hpp"
+#include "logic_device.hpp"
 
 namespace renderer {
     Allocator::Allocator(const Instance &instance, const PhysicalDevice &physical_device, const LogicalDevice &device) {
