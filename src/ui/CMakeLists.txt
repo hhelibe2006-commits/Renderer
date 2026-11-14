@@ -7,7 +7,7 @@ add_library(Renderer::ui ALIAS renderer_ui)
 target_link_libraries(renderer_ui
         PUBLIC
         Renderer::common
-        glfw
+        GLFW::Settings
         Vulkan::Vulkan
         PRIVATE
         Renderer::warnings

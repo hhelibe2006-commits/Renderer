@@ -17,6 +17,7 @@ add_library(renderer_vulkan STATIC
         image_view.hpp
         allocator.cpp
         allocator.hpp
+        vma_impl.cpp
 )
 add_library(Renderer::vulkan ALIAS renderer_vulkan)
 
@@ -24,7 +25,7 @@ target_link_libraries(renderer_vulkan
         PUBLIC
         Renderer::common
         Vulkan::Settings
-        glfw
+        GLFW::Settings
         PRIVATE
         glm::glm
         Renderer::warnings

@@ -39,5 +39,3 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(glm glfw VulkanMemoryAllocator imgui tinygltf ktx)
-
-add_library(renderer_vma INTERFACE)

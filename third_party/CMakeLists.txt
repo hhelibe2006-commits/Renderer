@@ -22,6 +22,7 @@ target_include_directories(tinygltf SYSTEM PUBLIC ${tinygltf_SOURCE_DIR})
 
 add_library(Renderer::tinygltf ALIAS tinygltf)
 
+add_library(renderer_vma INTERFACE)
 
 target_include_directories(renderer_vma SYSTEM INTERFACE
         ${VulkanMemoryAllocator_SOURCE_DIR}/include
@@ -39,3 +40,13 @@ target_compile_definitions(vulkan_settings INTERFACE
 target_link_libraries(vulkan_settings INTERFACE Vulkan::Vulkan)
 
 add_library(Vulkan::Settings ALIAS vulkan_settings)
+
+add_library(glfw_settings INTERFACE)
+
+target_compile_definitions(glfw_settings INTERFACE
+        GLFW_INCLUDE_VULKAN
+)
+
+target_link_libraries(glfw_settings INTERFACE glfw)
+
+add_library(GLFW::Settings ALIAS glfw_settings)
