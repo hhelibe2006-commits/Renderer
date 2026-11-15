@@ -8,6 +8,10 @@ namespace renderer {
     public:
         ImageViews(const LogicalDevice &device, std::vector<vk::Image> &&images, vk::Format format);
         ~ImageViews() = default;
+
+        size_t size() const {
+            return m_image_views.size();
+        }
     private:
         std::vector<vk::Image> m_images;
         std::vector<vk::raii::ImageView> m_image_views;

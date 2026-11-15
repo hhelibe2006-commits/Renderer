@@ -18,6 +18,8 @@ add_library(renderer_vulkan STATIC
         allocator.cpp
         allocator.hpp
         vma_impl.cpp
+        cmmand_buffer.cpp
+        cmmand_buffer.hpp
 )
 add_library(Renderer::vulkan ALIAS renderer_vulkan)
 
@@ -29,4 +31,5 @@ target_link_libraries(renderer_vulkan
         PRIVATE
         glm::glm
         Renderer::warnings
+        Renderer::imgui
 )

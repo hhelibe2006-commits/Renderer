@@ -25,8 +25,10 @@ void Application::initRenderer(){
 }
 
 void Application::mainLoop() const {
-    while (!m_main_window->shouldClose()) {
-        ui::pollEvents();
+    while (!m_main_window -> shouldClose()) {
+        m_main_window -> poolEvents();
+
+        m_renderer -> draw();
     }
 }
 

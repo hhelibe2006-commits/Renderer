@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+
 #include "ui/main_window.hpp"
 #include "renderer/Renderer.hpp"
 

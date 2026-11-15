@@ -17,6 +17,8 @@ namespace renderer {
 
         ~Renderer();
 
+        void draw() const;
+
         void setSwapChain(VkSurfaceKHR &&surface, GLFWwindow* window);
 
         [[nodiscard]] const vk::raii::Instance& getInstance() const;
@@ -32,7 +34,10 @@ namespace renderer {
 
         std::unique_ptr<vk::raii::SwapchainKHR> m_swap_chain;
         std::unique_ptr<ImageViews> m_image_views;
+        std::unique_ptr<vk::raii::CommandBuffer> m_command_buffer;
 
         void createSwapchain(GLFWwindow* window);
+
+        void initImGui() const;
     };
 }
