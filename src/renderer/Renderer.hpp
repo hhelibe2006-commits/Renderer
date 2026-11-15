@@ -10,6 +10,7 @@ namespace renderer {
     class LogicalDevice;
     class Allocator;
     class ImageViews;
+    class CommandBuffer;
 
     class Renderer {
     public:
@@ -34,7 +35,7 @@ namespace renderer {
 
         std::unique_ptr<vk::raii::SwapchainKHR> m_swap_chain;
         std::unique_ptr<ImageViews> m_image_views;
-        std::unique_ptr<vk::raii::CommandBuffer> m_command_buffer;
+        std::unique_ptr<CommandBuffer> m_command_buffer;
 
         void createSwapchain(GLFWwindow* window);
 

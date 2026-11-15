@@ -8,6 +8,7 @@
 #include "instance.hpp"
 #include "logic_device.hpp"
 #include "image_view.hpp"
+#include "cmmand_buffer.hpp"
 #include <imgui.h>
 #include <imgui_impl_vulkan.h>
 
@@ -27,6 +28,7 @@ namespace renderer {
         m_physical_device = std::make_unique<PhysicalDevice>(physical_device);
         m_device = std::make_unique<LogicalDevice>(*m_physical_device);
         m_allocator = std::make_unique<Allocator>(*m_instance, *m_physical_device, *m_device);
+        m_command_buffer = std::make_unique<CommandBuffer>(*m_device);
     }
 
     Renderer::~Renderer() {
@@ -35,7 +37,7 @@ namespace renderer {
 
     void Renderer::draw() const {
         ImDrawData *draw = ImGui::GetDrawData();
-        ImGui_ImplVulkan_RenderDrawData(draw, **m_command_buffer);
+        ImGui_ImplVulkan_RenderDrawData(draw, *m_command_buffer -> get());
     }
 
     void Renderer::setSwapChain(VkSurfaceKHR &&surface, GLFWwindow* window) {
