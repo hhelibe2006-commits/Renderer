@@ -65,7 +65,7 @@ namespace renderer {
             .imageArrayLayers = 1,
             .imageUsage = vk::ImageUsageFlagBits::eColorAttachment,
             .imageSharingMode = vk::SharingMode::eExclusive,
-            .queueFamilyIndexCount = m_physical_device -> getQueueIndex(),
+            .queueFamilyIndexCount = m_physical_device -> getQueueFamilyIndex(),
             .preTransform = capabilities.currentTransform,
             .compositeAlpha = vk::CompositeAlphaFlagBitsKHR::eOpaque,
             .presentMode = m_physical_device -> choosePresentMode(*m_surface),
@@ -92,7 +92,7 @@ namespace renderer {
             .Instance = *m_instance -> get(),
             .PhysicalDevice = *m_physical_device -> get(),
             .Device = *m_device -> get(),
-            .QueueFamily = m_physical_device -> getQueueIndex(),
+            .QueueFamily = m_physical_device -> getQueueFamilyIndex(),
             .Queue = *m_device -> getQueue(),
             .DescriptorPoolSize = IMGUI_IMPL_VULKAN_MINIMUM_SAMPLED_IMAGE_POOL_SIZE
             + IMGUI_IMPL_VULKAN_MINIMUM_SAMPLER_POOL_SIZE,

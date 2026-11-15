@@ -18,7 +18,9 @@ namespace renderer {
 
         [[nodiscard]] uint32_t getQueueFamilyIndex() const {
             return m_queue_family_index;
-        };
+        }
+
+        void present(const vk::PresentInfoKHR &presentInfo);
     private:
         std::unique_ptr<vk::raii::Device> m_device;
         std::unique_ptr<Queue> m_queue;

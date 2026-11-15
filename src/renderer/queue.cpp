@@ -12,4 +12,8 @@ namespace renderer {
     const vk::raii::Queue &Queue::get() const {
         return *m_queue;
     }
+
+    void Queue::present(const vk::PresentInfoKHR &presentInfo) {
+        vk::Result result = m_queue -> presentKHR(presentInfo);
+    }
 }

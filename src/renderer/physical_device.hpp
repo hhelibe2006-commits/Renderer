@@ -15,7 +15,7 @@ namespace renderer {
             return *m_physical_device;
         }
 
-        [[nodiscard]] uint32_t getQueueIndex() const;
+        [[nodiscard]] uint32_t getQueueFamilyIndex() const;
 
         [[nodiscard]] vk::SurfaceFormatKHR chooseFormat(const vk::raii::SurfaceKHR& surface) const;
 

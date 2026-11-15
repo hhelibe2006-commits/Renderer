@@ -13,10 +13,10 @@ namespace renderer {
     LogicalDevice::LogicalDevice(const PhysicalDevice &physical_device) {
         float priority = 0.5;
 
-        m_queue_family_index = physical_device.getQueueIndex();
+        m_queue_family_index = physical_device.getQueueFamilyIndex();
 
         vk::DeviceQueueCreateInfo queue_create_info{
-            .queueFamilyIndex = physical_device.getQueueIndex(),
+            .queueFamilyIndex = physical_device.getQueueFamilyIndex(),
             .queueCount = 1,
             .pQueuePriorities = &priority
         };
@@ -41,10 +41,14 @@ namespace renderer {
 
         m_device = std::make_unique<vk::raii::Device>(physical_device.get(), create_info);
 
-        m_queue = std::make_unique<Queue>(*this, physical_device.getQueueIndex());
+        m_queue = std::make_unique<Queue>(*this, physical_device.getQueueFamilyIndex());
     }
 
     const vk::raii::Queue& LogicalDevice::getQueue() const {
         return m_queue -> get();
+    }
+
+    void LogicalDevice::present(const vk::PresentInfoKHR &presentInfo) {
+        m_queue -> present(presentInfo);
     }
 }

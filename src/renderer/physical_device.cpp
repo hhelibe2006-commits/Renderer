@@ -18,7 +18,7 @@ namespace renderer {
         setQueueIndex();
     }
 
-    uint32_t PhysicalDevice::getQueueIndex() const {
+    uint32_t PhysicalDevice::getQueueFamilyIndex() const {
         return m_queue_family_index;
     }
 

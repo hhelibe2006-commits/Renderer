@@ -10,6 +10,8 @@ namespace renderer {
         ~Queue();
 
         [[nodiscard]] const vk::raii::Queue& get() const;
+
+        void present(const vk::PresentInfoKHR &presentInfo);
     private:
         std::unique_ptr<vk::raii::Queue> m_queue;
     };
