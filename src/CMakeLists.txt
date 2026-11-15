@@ -6,6 +6,7 @@ target_compile_features(renderer_common INTERFACE cxx_std_20)
 
 add_subdirectory(ui)
 add_subdirectory(renderer)
+add_subdirectory(shaders)
 
 add_executable(Renderer
         main.cpp

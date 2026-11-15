@@ -1,3 +1,5 @@
+add_subdirectory(shader_interface)
+
 add_library(renderer_vulkan STATIC
         instance.cpp
         instance.hpp
@@ -29,7 +31,7 @@ target_link_libraries(renderer_vulkan
         Vulkan::Settings
         GLFW::Settings
         PRIVATE
-        glm::glm
+        Shader::Interface
         Renderer::warnings
         Renderer::imgui
 )
