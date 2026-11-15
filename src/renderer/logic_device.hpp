@@ -14,10 +14,15 @@ namespace renderer {
 
         [[nodiscard]] const vk::raii::Device& get() const {
             return *m_device;
+        }
+
+        [[nodiscard]] uint32_t getQueueFamilyIndex() const {
+            return m_queue_family_index;
         };
     private:
         std::unique_ptr<vk::raii::Device> m_device;
         std::unique_ptr<Queue> m_queue;
 
+        uint32_t m_queue_family_index;
     };
 }

@@ -13,6 +13,8 @@ namespace renderer {
     LogicalDevice::LogicalDevice(const PhysicalDevice &physical_device) {
         float priority = 0.5;
 
+        m_queue_family_index = physical_device.getQueueIndex();
+
         vk::DeviceQueueCreateInfo queue_create_info{
             .queueFamilyIndex = physical_device.getQueueIndex(),
             .queueCount = 1,
