@@ -29,7 +29,7 @@ namespace renderer {
     private:
         std::unique_ptr<vk::raii::PhysicalDevice> m_physical_device;
 
-        uint32_t m_queue_index = std::numeric_limits<uint32_t>::max();
+        uint32_t m_queue_family_index = std::numeric_limits<uint32_t>::max();
 
         std::unique_ptr<vk::raii::SwapchainKHR> m_swap_chain;
 

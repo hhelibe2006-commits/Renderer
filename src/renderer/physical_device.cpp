@@ -19,7 +19,7 @@ namespace renderer {
     }
 
     uint32_t PhysicalDevice::getQueueIndex() const {
-        return m_queue_index;
+        return m_queue_family_index;
     }
 
     vk::SurfaceFormatKHR PhysicalDevice::chooseFormat(const vk::raii::SurfaceKHR &surface) const {
@@ -132,7 +132,7 @@ namespace renderer {
 
         for (size_t index = 0; index < queue_family_properties.size(); ++index) {
             if (queue_family_properties[index].queueFlags & vk::QueueFlagBits::eGraphics) {
-                m_queue_index = static_cast<uint32_t>(index);
+                m_queue_family_index = static_cast<uint32_t>(index);
                 break;
             }
         }
