@@ -6,7 +6,7 @@
 #include "logic_device.hpp"
 
 namespace {
-    std::vector<const char*> required_extensions{
+    std::vector required_extensions{
         vk::KHRSwapchainExtensionName
     };
 }
@@ -71,10 +71,11 @@ namespace renderer {
         return image_count;
     }
 
-    vk::raii::PhysicalDevice PhysicalDevice::findPhysicalDevice(std::vector<vk::raii::PhysicalDevice> physical_devices) {
+    vk::raii::PhysicalDevice PhysicalDevice::findPhysicalDevice(const std::vector<vk::raii::PhysicalDevice>& physical_devices, const vk::raii::SurfaceKHR &surface) {
         std::multimap<int, vk::raii::PhysicalDevice> device_map;
 
         for (const auto& device : physical_devices) {
+            if (isDevice(device, surface))
             device_map.insert(std::pair(getScore(device), device));
         }
 
@@ -86,9 +87,6 @@ namespace renderer {
     }
 
     int PhysicalDevice::getScore(const vk::raii::PhysicalDevice &device) {
-        if (!isDevice(device)) {
-            return 0;
-        }
         int score = 0;
 
         if (device.getProperties().deviceType == vk::PhysicalDeviceType::eDiscreteGpu) {
@@ -100,7 +98,7 @@ namespace renderer {
         return score;
     }
 
-    bool PhysicalDevice::isDevice(const vk::raii::PhysicalDevice &device) {
+    bool PhysicalDevice::isDevice(const vk::raii::PhysicalDevice &device, const vk::raii::SurfaceKHR &surface) {
         const bool support_vk_version_1_3 = device.getProperties().apiVersion > vk::ApiVersion12;
 
         auto features = device.getFeatures2<vk::PhysicalDeviceFeatures2,
@@ -113,9 +111,13 @@ namespace renderer {
         & features.get<vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT>().extendedDynamicState;
 
         std::vector<vk::QueueFamilyProperties> queue_properties = device.getQueueFamilyProperties();
-        const bool support_graphics = std::ranges::any_of(queue_properties, [](const vk::QueueFamilyProperties& queue_property) {
-            return static_cast<bool>(vk::QueueFlagBits::eGraphics & queue_property.queueFlags);
-        });
+        bool support_graphics;
+
+        for (uint32_t index = 0; index < queue_properties.size(); ++index) {
+            if (static_cast<bool>(vk::QueueFlagBits::eGraphics & queue_properties[index].queueFlags) && device.getSurfaceSupportKHR(index, surface)) {
+                support_graphics = true;
+            }
+        }
 
         std::vector<vk::ExtensionProperties> extension_properties = device.enumerateDeviceExtensionProperties();
         const bool support_extensions = std::ranges::all_of(required_extensions, [&extension_properties](const char *required_extension) {

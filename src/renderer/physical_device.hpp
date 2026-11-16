@@ -25,7 +25,7 @@ namespace renderer {
 
         [[nodiscard]] uint32_t chooseImageCount(const vk::raii::SurfaceKHR& surface) const;
 
-        static vk::raii::PhysicalDevice findPhysicalDevice(std::vector<vk::raii::PhysicalDevice> physical_devices);
+        static vk::raii::PhysicalDevice findPhysicalDevice(const std::vector<vk::raii::PhysicalDevice>& physical_devices, const vk::raii::SurfaceKHR &surface);
     private:
         std::unique_ptr<vk::raii::PhysicalDevice> m_physical_device;
 
@@ -35,7 +35,7 @@ namespace renderer {
 
         [[nodiscard]] static int getScore(const vk::raii::PhysicalDevice& device);
 
-        [[nodiscard]] static bool isDevice(const vk::raii::PhysicalDevice& device);
+        [[nodiscard]] static bool isDevice(const vk::raii::PhysicalDevice& device, const vk::raii::SurfaceKHR &surface);
 
         void setQueueIndex();
     };

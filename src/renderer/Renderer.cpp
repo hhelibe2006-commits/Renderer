@@ -23,8 +23,8 @@ namespace {
 namespace renderer {
     Renderer::Renderer(std::vector<const char*>& required_extensions) {
         m_instance = std::make_unique<Instance>(required_extensions);
-
-        auto physical_device = PhysicalDevice::findPhysicalDevice(m_instance -> getPhysicalDevices());
+        
+        auto physical_device = PhysicalDevice::findPhysicalDevice(m_instance -> getPhysicalDevices(), *m_surface);
         m_physical_device = std::make_unique<PhysicalDevice>(physical_device);
         m_device = std::make_unique<LogicalDevice>(*m_physical_device);
         m_allocator = std::make_unique<Allocator>(*m_instance, *m_physical_device, *m_device);

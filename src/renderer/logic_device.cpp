@@ -4,7 +4,7 @@
 #include "queue.hpp"
 
 namespace {
-    std::vector<const char*> required_extensions = {
+    std::vector required_extensions = {
         vk::KHRSwapchainExtensionName
     };
 }

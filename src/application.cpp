@@ -1,7 +1,5 @@
 #include "application.hpp"
 
-
-
 namespace {
     constexpr std::string TITLE = "Renderer";
 }
@@ -10,7 +8,6 @@ void Application::run() {
     initWindow();
     initRenderer();
     mainLoop();
-    clear();
 }
 
 void Application::initWindow() {
@@ -30,8 +27,4 @@ void Application::mainLoop() const {
 
         m_renderer -> draw();
     }
-}
-
-void Application::clear() {
-
 }

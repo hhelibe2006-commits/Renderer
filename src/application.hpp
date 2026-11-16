@@ -17,6 +17,4 @@ private:
     void initWindow();
     void initRenderer();
     void mainLoop() const;
-
-    void clear();
 };

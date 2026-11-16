@@ -22,6 +22,8 @@ add_library(renderer_vulkan STATIC
         vma_impl.cpp
         cmmand_buffer.cpp
         cmmand_buffer.hpp
+        shader_modle.cpp
+        shader_modle.hpp
 )
 add_library(Renderer::vulkan ALIAS renderer_vulkan)
 
