@@ -23,12 +23,6 @@ namespace {
 namespace renderer {
     Renderer::Renderer(std::vector<const char*>& required_extensions) {
         m_instance = std::make_unique<Instance>(required_extensions);
-        
-        auto physical_device = PhysicalDevice::findPhysicalDevice(m_instance -> getPhysicalDevices(), *m_surface);
-        m_physical_device = std::make_unique<PhysicalDevice>(physical_device);
-        m_device = std::make_unique<LogicalDevice>(*m_physical_device);
-        m_allocator = std::make_unique<Allocator>(*m_instance, *m_physical_device, *m_device);
-        m_command_buffer = std::make_unique<CommandBuffer>(*m_device);
     }
 
     Renderer::~Renderer() {
@@ -42,6 +36,12 @@ namespace renderer {
 
     void Renderer::setSwapChain(VkSurfaceKHR &&surface, GLFWwindow* window) {
         m_surface = std::make_unique<vk::raii::SurfaceKHR>(m_instance -> get(), surface);
+
+        auto physical_device = PhysicalDevice::findPhysicalDevice(m_instance -> getPhysicalDevices(), *m_surface);
+        m_physical_device = std::make_unique<PhysicalDevice>(physical_device);
+        m_device = std::make_unique<LogicalDevice>(*m_physical_device);
+        m_allocator = std::make_unique<Allocator>(*m_instance, *m_physical_device, *m_device);
+        m_command_buffer = std::make_unique<CommandBuffer>(*m_device);
 
         createSwapchain(window);
 
